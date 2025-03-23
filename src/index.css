@@ -93,7 +93,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans overflow-x-hidden;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
@@ -128,12 +128,12 @@
   }
 
   .nav-link {
-    @apply px-4 py-2 text-sm font-medium text-muted-foreground transition-colors relative hover:text-foreground;
+    @apply relative hover:text-foreground;
   }
 
   .nav-link::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 ease-in-out;
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 ease-in-out;
   }
 
   .nav-link:hover::after {
@@ -141,7 +141,7 @@
   }
 
   .nav-link.active {
-    @apply text-foreground;
+    @apply font-medium;
   }
 
   .nav-link.active::after {
@@ -166,10 +166,7 @@
     }
   }
 
-  /* Hero Image Styles */
-  .hero-image-container {
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-  }
+  /* Removed the hero-image-container clip-path */
 
   .hero-image-overlay {
     background: linear-gradient(180deg, 

@@ -8,6 +8,7 @@ import Highlights from '@/components/Highlights';
 import Gallery from '@/components/Gallery';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import { cn } from '@/lib/utils';
 
 const Index = () => {
   // Implement smooth scrolling for anchor links
@@ -40,9 +41,9 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col w-full overflow-x-hidden">
       <Navbar />
-      <main>
+      <main className="w-full">
         <Hero />
         <About />
         <Achievements />

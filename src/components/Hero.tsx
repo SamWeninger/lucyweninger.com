@@ -14,8 +14,8 @@ const heroImages = [
 const Hero: React.FC = () => {
   return (
     <section id="hero" className="relative w-full h-screen min-h-[600px] overflow-hidden">
-      {/* Hero background slider */}
-      <div className="absolute inset-0 hero-image-container">
+      {/* Hero background slider - removed the triangular clip-path */}
+      <div className="absolute inset-0">
         <ImageSlider 
           images={heroImages} 
           autoplaySpeed={5000} 
