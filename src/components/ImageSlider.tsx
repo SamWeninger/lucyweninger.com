@@ -46,19 +46,15 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
   }, []);
 
   const nextSlide = useCallback(() => {
-    console.log('Moving to next slide');
     setCurrentIndex((prevIndex) => {
       const newIndex = prevIndex === images.length - 1 ? 0 : prevIndex + 1;
-      console.log(`Slide changed from ${prevIndex} to ${newIndex}`);
       return newIndex;
     });
   }, [images.length]);
 
   const prevSlide = useCallback(() => {
-    console.log('Moving to previous slide');
     setCurrentIndex((prevIndex) => {
       const newIndex = prevIndex === 0 ? images.length - 1 : prevIndex - 1;
-      console.log(`Slide changed from ${prevIndex} to ${newIndex}`);
       return newIndex;
     });
   }, [images.length]);

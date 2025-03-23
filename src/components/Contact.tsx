@@ -221,7 +221,7 @@ const Contact: React.FC = () => {
                 <h3 className="text-xl font-bold mb-4">Social Media & Profiles</h3>
                 
                 <div className="space-y-4">
-                  <div className="flex justify-between">
+                  <div className="flex justify-start space-x-4">
                     <a 
                       href="https://www.instagram.com/lucy_weninger/?hl=en"
                       target="_blank"

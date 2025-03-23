@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -53,8 +52,17 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when clicking a nav link
-  const handleNavLinkClick = () => {
+  const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const targetId = e.currentTarget.getAttribute('href')?.substring(1);
+    const targetElement = document.getElementById(targetId || '');
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+      // Use replaceState to avoid adding a new history entry
+      setTimeout(() => {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }, 0);
+    }
     setIsMenuOpen(false);
   };
 
@@ -83,6 +91,7 @@ const Navbar: React.FC = () => {
             <a
               key={link.name}
               href={link.href}
+              onClick={handleNavLinkClick}
               className={cn(
                 "nav-link px-4 py-2 text-sm font-medium transition-colors relative hover:opacity-90",
                 (isScrolled || !isOverHero) 
@@ -121,8 +130,8 @@ const Navbar: React.FC = () => {
             <a
               key={link.name}
               href={link.href}
-              className="py-2 text-primary hover:text-primary/80 transition-colors"
               onClick={handleNavLinkClick}
+              className="py-2 text-primary hover:text-primary/80 transition-colors"
             >
               {link.name}
             </a>
