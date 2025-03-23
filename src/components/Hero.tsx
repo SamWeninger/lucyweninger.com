@@ -14,21 +14,24 @@ const heroImages = [
 const Hero: React.FC = () => {
   return (
     <section id="hero" className="relative w-full h-screen min-h-[600px] overflow-hidden flex items-center justify-center bg-[#222222]">
-      {/* Hero background slider with container to ensure proper sizing */}
-      <div className="relative w-full h-full max-w-[1920px] mx-auto">
-        <div className="absolute inset-0">
-          <ImageSlider 
-            images={heroImages} 
-            autoplaySpeed={5000} 
-            aspectRatio="aspect-[16/9]"
-            className="h-full"
-            overlay={true}
-          />
+      {/* Hero background slider with fixed aspect ratio container */}
+      <div className="relative w-full h-full flex justify-center items-center">
+        <div className="absolute inset-0 flex justify-center">
+          <div className="relative h-full w-full max-w-[1920px]">
+            <ImageSlider 
+              images={heroImages} 
+              autoplaySpeed={5000} 
+              aspectRatio="aspect-[16/9]"
+              className="h-full w-full"
+              overlay={true}
+              fit="cover"
+            />
+          </div>
         </div>
         
         {/* Hero content */}
-        <div className="relative h-full z-10 flex flex-col items-center justify-center text-center text-white p-4">
-          <div className="max-w-4xl mx-auto backdrop-blur-sm bg-black/20 p-8 rounded-xl animate-scale-up">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center text-white p-4 max-w-4xl mx-auto">
+          <div className="backdrop-blur-sm bg-black/20 p-6 md:p-8 rounded-xl animate-scale-up w-full">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 drop-shadow-md">
               Lucy Weninger
             </h1>

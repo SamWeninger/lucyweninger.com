@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -9,6 +9,7 @@ interface ImageSliderProps {
   className?: string;
   aspectRatio?: string;
   overlay?: boolean;
+  fit?: 'contain' | 'cover';
 }
 
 const ImageSlider: React.FC<ImageSliderProps> = ({
@@ -16,12 +17,33 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
   autoplaySpeed = 5000,
   className,
   aspectRatio = 'aspect-[16/9]',
-  overlay = false
+  overlay = false,
+  fit = 'cover'
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
   const [isPaused, setIsPaused] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Track container size to ensure responsiveness
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+
+    // Initial measurement
+    updateDimensions();
+    
+    // Add resize listener
+    window.addEventListener('resize', updateDimensions);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, []);
 
   const nextSlide = useCallback(() => {
     console.log('Moving to next slide');
@@ -124,7 +146,12 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
 
   return (
     <div 
-      className={cn("relative overflow-hidden", aspectRatio, className)}
+      ref={containerRef}
+      className={cn(
+        "relative overflow-hidden w-full", 
+        aspectRatio, 
+        className
+      )}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -132,14 +159,17 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
         <div
           key={index}
           className={cn(
-            "absolute inset-0 transition-all duration-700 ease-in-out",
+            "absolute inset-0 transition-all duration-700 ease-in-out w-full h-full",
             index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
           )}
         >
           <img
             src={image}
             alt={`Lucy Weninger - Soccer ${index + 1}`}
-            className="absolute inset-0 w-full h-full object-cover animate-image-fade"
+            className={cn(
+              "absolute inset-0 w-full h-full animate-image-fade",
+              fit === 'contain' ? "object-contain" : "object-cover"
+            )}
           />
           {overlay && (
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/50 z-10" />
