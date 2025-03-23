@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -11,6 +11,18 @@ import Footer from '@/components/Footer';
 import { cn } from '@/lib/utils';
 
 const Index = () => {
+  // Track scroll position to adjust styles
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   // Implement smooth scrolling for anchor links
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
@@ -42,6 +54,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col w-full overflow-x-hidden">
+      {/* Pass scrollPosition to Navbar component for dynamic styling */}
       <Navbar />
       <main className="w-full">
         <Hero />
