@@ -1,7 +1,6 @@
-
 import React from 'react';
 import SectionHeading from './SectionHeading';
-import { Shield, Star, Timer, Trophy, Award } from 'lucide-react';
+import { Shield, Star, Timer, Trophy, Award, BookOpen } from 'lucide-react';
 
 const Achievements: React.FC = () => {
   return (
