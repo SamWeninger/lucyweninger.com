@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import SectionHeading from './SectionHeading';
 import { Instagram, Linkedin, ExternalLink, Send, Mail, Check, AlertCircle } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
