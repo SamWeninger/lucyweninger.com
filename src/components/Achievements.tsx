@@ -69,11 +69,11 @@ const Achievements: React.FC = () => {
                 <ul className="space-y-2">
                   <li className="flex items-start">
                     <Award className="h-4 w-4 mr-2 text-primary mt-1 flex-shrink-0" />
-                    <span>First Team USC All-America</span>
+                    <span>First Team USC All-American</span>
                   </li>
                   <li className="flex items-start">
                     <Award className="h-4 w-4 mr-2 text-primary mt-1 flex-shrink-0" />
-                    <span>First Team D2CCA All-America</span>
+                    <span>First Team D2CCA All-American</span>
                   </li>
                   <li className="flex items-start">
                     <Award className="h-4 w-4 mr-2 text-primary mt-1 flex-shrink-0" />

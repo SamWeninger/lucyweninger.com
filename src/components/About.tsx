@@ -1,4 +1,3 @@
-
 import React from 'react';
 import SectionHeading from './SectionHeading';
 import { Trophy, Award, Star, Users, BookOpen } from 'lucide-react';
@@ -27,7 +26,7 @@ const About: React.FC = () => {
             <div className="absolute -top-5 -right-5 bg-white shadow-lg rounded-lg px-4 py-2 animate-scale-up">
               <div className="flex items-center text-primary">
                 <Trophy className="h-5 w-5 mr-2" />
-                <span className="font-bold">First Team All-America</span>
+                <span className="font-bold">First Team All-American</span>
               </div>
             </div>
             
@@ -49,11 +48,11 @@ const About: React.FC = () => {
               <ul className="space-y-2">
                 <li className="flex items-start">
                   <Star className="h-4 w-4 mr-2 text-primary mt-1 flex-shrink-0" />
-                  <span>2024 First Team USC All-America</span>
+                  <span>2024 First Team USC All-American</span>
                 </li>
                 <li className="flex items-start">
                   <Star className="h-4 w-4 mr-2 text-primary mt-1 flex-shrink-0" />
-                  <span>First Team D2CCA All-America</span>
+                  <span>First Team D2CCA All-American</span>
                 </li>
                 <li className="flex items-start">
                   <Star className="h-4 w-4 mr-2 text-primary mt-1 flex-shrink-0" />
