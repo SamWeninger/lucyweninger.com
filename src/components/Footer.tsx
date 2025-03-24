@@ -1,16 +1,8 @@
-
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
+import { smoothScrollTo } from '@/lib/utils';
 
 const Footer: React.FC = () => {
-  // Scroll to top function
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
   return (
     <footer className="bg-primary text-white py-8">
       <div className="container mx-auto px-4">
@@ -28,13 +20,14 @@ const Footer: React.FC = () => {
               </p>
             </div>
             
-            <button
-              onClick={scrollToTop}
+            <a
+              href="#hero"
+              onClick={smoothScrollTo}
               className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
               aria-label="Scroll to top"
             >
               <ArrowUp className="h-5 w-5" />
-            </button>
+            </a>
           </div>
         </div>
       </div>

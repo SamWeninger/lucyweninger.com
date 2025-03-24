@@ -1,7 +1,7 @@
-
 import React from 'react';
 import ImageSlider from './ImageSlider';
 import { ArrowDown } from 'lucide-react';
+import { smoothScrollTo } from '@/lib/utils';
 
 // Array of hero images
 const heroImages = [
@@ -49,12 +49,14 @@ const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
               <a 
                 href="#highlights" 
+                onClick={smoothScrollTo}
                 className="px-6 py-3 bg-primary text-white rounded-full font-medium transition-all hover:bg-primary/90 hover:scale-105 shadow-lg"
               >
                 Watch Highlights
               </a>
               <a 
                 href="#contact" 
+                onClick={smoothScrollTo}
                 className="px-6 py-3 bg-white text-primary rounded-full font-medium transition-all hover:bg-white/90 hover:scale-105 shadow-lg"
               >
                 Contact Lucy
@@ -65,7 +67,11 @@ const Hero: React.FC = () => {
         
         {/* Scroll indicator */}
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-          <a href="#about" className="flex flex-col items-center text-white opacity-80 hover:opacity-100 transition-opacity">
+          <a 
+            href="#about" 
+            onClick={smoothScrollTo}
+            className="flex flex-col items-center text-white opacity-80 hover:opacity-100 transition-opacity"
+          >
             <span className="text-sm font-medium mb-2">Scroll Down</span>
             <ArrowDown className="h-6 w-6" />
           </a>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn, smoothScrollTo } from '@/lib/utils';
 
 const navLinks = [
   { name: 'About', href: '#about' },
@@ -52,20 +52,6 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const targetId = e.currentTarget.getAttribute('href')?.substring(1);
-    const targetElement = document.getElementById(targetId || '');
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth' });
-      // Use replaceState to avoid adding a new history entry
-      setTimeout(() => {
-        window.history.replaceState(null, '', window.location.pathname + window.location.search);
-      }, 0);
-    }
-    setIsMenuOpen(false);
-  };
-
   return (
     <header className={cn(
       "fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full",
@@ -77,6 +63,7 @@ const Navbar: React.FC = () => {
         {/* Logo/Name */}
         <a 
           href="#hero" 
+          onClick={smoothScrollTo}
           className={cn(
             "text-xl font-display font-bold transition-all duration-300 hover:opacity-80",
             isScrolled || !isOverHero ? "text-primary" : "text-white"
@@ -91,7 +78,7 @@ const Navbar: React.FC = () => {
             <a
               key={link.name}
               href={link.href}
-              onClick={handleNavLinkClick}
+              onClick={smoothScrollTo}
               className={cn(
                 "nav-link px-4 py-2 text-sm font-medium transition-colors relative hover:opacity-90",
                 (isScrolled || !isOverHero) 
@@ -130,7 +117,7 @@ const Navbar: React.FC = () => {
             <a
               key={link.name}
               href={link.href}
-              onClick={handleNavLinkClick}
+              onClick={smoothScrollTo}
               className="py-2 text-primary hover:text-primary/80 transition-colors"
             >
               {link.name}
